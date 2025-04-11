@@ -1,16 +1,16 @@
 def decrypt_caesar(ciphertext, shift):
-    decrypted = ""
+    decrypted_text = ""
     for char in ciphertext:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
-            decrypted += chr((ord(char) - base - shift) % 26 + base)
+            shift_base = 65 if char.isupper() else 97
+            decrypted_text += chr((ord(char) - shift_base - shift) % 26 + shift_base)
         else:
-            decrypted += char
-    return decrypted
+            decrypted_text += char
+    return decrypted_text
 
 if __name__ == "__main__":
-    text = "Wklv lv d whvw phvvdjh iru ghfubswlrq xvlqj wkh Fdhvdu Flskhu dojrulwkp lq wkh ilhog ri frpsxwhu qhwzrunv. lw frqwdlqv pdqb whupv vxfk dv, l3s dgguhvvlqj, vxfq, srvw, vlf, urxwlqj, gdwd sdfnhwv dqg pruh."
-    key = 3
-    original = decrypt_caesar(text, key)
-    print("Decrypted message:")
-    print(original)
+    encrypted_message = input("Enter the encrypted message: ")
+    
+    for shift_value in range(1, 27):
+        decrypted_message = decrypt_caesar(encrypted_message, shift_value)
+        print(f"Shift {shift_value}: {decrypted_message}")
